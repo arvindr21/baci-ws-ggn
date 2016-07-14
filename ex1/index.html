@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Connectivity</title>
+    <style>
+        .online #status{color: green}
+        .offline #status{color: red}
+    </style>
+</head>
+
+<body>
+    <h2>Connectivity</h2>
+    <p>Status :
+        <label id="status"></label>
+    </p>
+    <script>
+    function updateOnlineStatus() {
+        var condition = navigator.onLine ? 'online' : 'offline';
+        console.log(condition);
+        document.querySelector('#status').innerHTML = condition;
+        document.querySelector('body').className = condition;
+    }
+
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
+    // init on page load
+    updateOnlineStatus();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>SCSS App</title>
+    <script src="http://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.6.2.js"></script>
+    <link rel="stylesheet" href="css/app.css">
+</head>
+
+<body>
+    <div>
+        <input type="button" value="Red Theme" onclick="changeTheme('red')">
+        <input type="button" value="Blue Theme" onclick="changeTheme('blue')">
+    </div>
+    <div class="border-radius">
+        <label class="data-from-localstorage">10</label>
+        <label class="data-from-localstorage-fallback">Oops! No LS</label>
+    </div>
+    <script type="text/javascript">
+    function changeTheme(theme) {
+        document.body.className = theme;
+    }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Local Storage</title>
+</head>
+
+<body>
+    <h2>LocalStorage</h2>
+    <form>
+        <label>Enter Fav. Color</label>
+        <input type="text" id="colorName">
+        <input type="button" onclick="addColor()" value="Add Color">
+    </form>
+    <div>
+        <ul id="favColors">
+        </ul>
+    </div>
+    <script>
+    var LSAPI = {
+        getAll: function() {
+            var favColors = [];
+            var ulHTML = '';
+            var lsObj = window.localStorage;
+            var keys = Object.keys(lsObj);
+            for (var i = 0; i < keys.length; i++) {
+                if (keys[i].indexOf('color-') === 0) {
+                    favColors.push(lsObj[keys[i]]);
+                    ulHTML += '<li>' + lsObj[keys[i]] + '</li>';
+                }
+            }
+
+            document.querySelector('#favColors').innerHTML = ulHTML;
+
+            return favColors;
+        },
+        upsert: function(key, value) {
+            window.localStorage.setItem(key, value);
+        },
+        read: function(key) {
+            return window.localStorage.getItem(key);
+        },
+        delete: function(key) {
+            return window.localStorage.removeItem(key);
+        }
+    }
+
+    function addColor() {
+        var uid = Math.floor(Math.random() * 999);
+        var value = document.querySelector('#colorName').value;
+        LSAPI.upsert('color-' + uid, value);
+    }
+
+    LSAPI.getAll();
+    </script>
+</body>
+
+</html>

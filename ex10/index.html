@@ -1,0 +1,20 @@
+<!doctype html>
+<html ng-app="EditApp">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body ng-controller="AppCtrl">
+    <div ng-hide="isEditMode">
+        <label>{{myName}}</label>
+        <input type="button" value="Edit" ng-click="toggle()">
+    </div>
+    <div ng-hide="!isEditMode">
+      <input type="text" ng-model="myName">
+      <input type="button" value="Save" ng-click="toggle()">
+    </div>
+</body>
+
+</html>

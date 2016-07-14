@@ -1,0 +1,14 @@
+{
+  "todos": [
+    {
+      "id": 2,
+      "text": "Bread",
+      "isCompleted": false
+    },
+    {
+      "id": 3,
+      "text": "Cheese",
+      "isCompleted": false
+    }
+  ]
+}

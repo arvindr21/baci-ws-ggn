@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Geo Location</title>
+    <style>
+    #mapcontainer {
+        height: 400px;
+    }
+    </style>
+</head>
+
+<body>
+    <h1>Geo Location</h1>
+    <div id="mapcontainer"></div>
+    <script src="http://maps.google.com/maps/api/js"></script>
+    <script>
+    function success(geoPosition) {
+        var lat = geoPosition.coords.latitude;
+        var lng = geoPosition.coords.longitude;
+
+        console.log(lat, lng);
+
+        var coords = new google.maps.LatLng(lat, lng);
+        var options = {
+            zoom: 15,
+            center: coords
+        };
+
+        var map = new google.maps.Map(document.getElementById("mapcontainer"), options);
+
+        var marker = new google.maps.Marker({
+            position: coords,
+            map: map,
+            title: "You are here!"
+        });
+    }
+
+    function error() {
+        document.querySelector('#mapcontainer').innerHTML = 'Please allow us to get your location!'
+    }
+
+    if (navigator.geolocation) {
+        // Geo Location Support
+        navigator.geolocation.getCurrentPosition(success, error);
+    } else {
+        document.querySelector('#mapcontainer').innerHTML = 'No Geo Location Support';
+    }
+    </script>
+</body>
+
+</html>

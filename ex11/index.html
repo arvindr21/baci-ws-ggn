@@ -1,0 +1,45 @@
+<!doctype html>
+<html ng-app="TodoApp">
+
+<head>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="angular.js"></script>
+    <script src="app.js"></script>
+    <style>
+        .strike{
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body class="container">
+    <h1 ng-controller="HeaderCtrl" class="text-center">Todo App ({{todos.length}})</h1>
+    <div ng-controller="AppCtrl">
+        <input type="text" class="form-control" ng-model="todoText" placeholder="Enter What you want To do.." ng-keypress="createTodo($event)" required>
+        <div class="row" ng-repeat="todo in todos">
+            {{todo}}
+            <div ng-hide="todo.isEditMode">
+                <div class="col-sm-1">
+                    <input type="checkbox" ng-model="todo.isCompleted" class="form-control" ng-click="saveTodo(todo)">
+                </div>
+                <div class="col-sm-7">
+                    <label ng-class="{strike : todo.isCompleted}">{{todo.text}}</label>
+                </div>
+                <div class="col-sm-4">
+                    <input type="button" class="btn btn-primary" value="Edit" ng-click="editTodo(todo)" ng-disabled="todo.isCompleted">
+                    <input type="button" class="btn btn-danger" value="Delete" ng-click="deleteTodo($index, todo)">
+                </div>
+            </div>
+            <div ng-hide="!todo.isEditMode">
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="todo.text">
+                </div>
+                <div class="col-sm-4">
+                    <input type="button" class="btn btn-info" value="Save" ng-click="saveTodo(todo)">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
